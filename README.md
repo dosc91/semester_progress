@@ -1,7 +1,3 @@
-<!-- badges: start -->
-![](https://img.shields.io/github/last-commit/dosc91/semester_progress)
-<!-- badges: end -->
-
 # semester_progress
 
 This R script creates a tsv-file for automatized scheduling of tweets to run a bot like [Semester Progress](https://twitter.com/sem_progress) or [sem_progress_hhu](https://twitter.com/sem_prog_hhu). It is inspired by the scripts for Python and Perl created by Simon Meier-Vieracker [here](https://github.com/fussballlinguist/semester_progress).
