@@ -7,3 +7,5 @@ Analogously to the originaly scripts, you just have to adjust the beginning and 
 As explained by Simon Meier-Vieracker, the output is compatible with [autoChirp](https://autochirp.spinfo.uni-koeln.de/home):
 
 > The format of the ouput is compatible with autoChirp, a small and easy-to-use webapplication to ease the scheduled publication of the tweets. Just create a new twitter account, log in at autoChirp, upload the tsv-file and there you go.
+
+If you prefer using Python or Perl over R, please be referred to Simon Meier-Vieracker's script [here](https://github.com/fussballlinguist/semester_progress).
