@@ -18,6 +18,12 @@ if(!require(hms)){install.packages("hms")}
 begin <- lubridate::ymd_hms("2022-04-01 08:30:00")
 end <- lubridate::ymd_hms("2022-07-15 20:00:00")
 
+## which type of message do you prefer?
+# a = the original  '% des Semesters sind rum.'
+# b = the new       '% der Vorlesungszeit sind rum.'
+## below, either enter a or b as value (b is the default and already specified)
+type <- "b"
+
 # Change the name of the tsv-output-file to your liking
 name <- "progress"
 
@@ -26,7 +32,7 @@ name <- "progress"
 # Select & run all to proceed
 ##############################
 
-interjections <- c("\\o/","Mein lieber Herr Gesangsverein!","Scheiß die Wand an!","Alter Schwede!","Heidewitzka!","Holla die Waldfee!","WTF!!","Ach du grüne Neune!","Sapperlot!","Ich glaub, mein Schwein pfeift!","Heiliger Bimbam!","Prost Mahlzeit!","Da brat mir einer n Storch!","Ach du meine Nase!","Hör mir auf!","Mannometer!","Ist es zu glauben?","Oh my fucking goodness!","Lecko mio!","Alter!","Gopferdeggl!","Grundgütiger!","Krass!","Juhuu!","Echt jetzt?","Tschakka!","Derbst, Alter!","Gimme five!","Da legst di nieda!","Eieiei!","Heiliger Strohsack!","Dat jibbet doch gar nich!","Ach du grüne Neune!","Schon gehört?","Unglaublich!","Ach du dickes Ei!","Ach du liebes bisschen!","Ach, du Schreck!","Da schau her!","Ist nicht wahr!","Oh Gottogott!","Schockschwerenot!","Schreck lass nach!","Guck an!","Teufel auch!","Wahnsinn!","Oje, ojemine!","Ich werd verrückt!","Da wird doch der Hund in der Pfanne verrückt!","Allmächd!","Oha!","Ich glaub mich laust der Affe!","Ich glaub, mich knutscht ein Elch!","Zum Donnerkeil!","Ich glaub, mein Hamster bohnert!","Meine Fresse!","Alter Falter!","Menschenskinder!","Ach du liebes Lieschen!","Ach du liebe Zeit!","Donnerlittchen!","Jesses, Maria und Joseph!","Heiliger Bimbam!","Heidewitzka!","Ich krieg die Motten!","Ich glaub, mich tritt ein Pferd!","Potz Blitz!")
+interjections <- c("\\o/","Mein lieber Herr Gesangsverein!","Oh Mann","Alter Schwede!","Heidewitzka!","Holla die Waldfee!","WTF!","Ach du grüne Neune!","Sapperlot!","Ich glaub, mein Schwein pfeift!","Heiliger Bimbam!","Prost Mahlzeit!","Da brat mir einer n Storch!","Ach du meine Nase!","Hör mir auf!","Mannometer!","Ist es zu glauben?","Oh my freaking goodness!","Lecko mio!","Alter!","Gopferdeggl!","Grundgütiger!","Krass!","Juhuu!","Echt jetzt?","Tschakka!","Derbst, Alter!","Gimme five!","Da legst di nieda!","Eieiei!","Heiliger Strohsack!","Dat jibbet doch gar nich!","Ach du grüne Neune!","Schon gehört?","Unglaublich!","Ach du dickes Ei!","Ach du liebes bisschen!","Ach, du Schreck!","Da schau her!","Ist nicht wahr!","Oh Gottogott!","Schockschwerenot!","Schreck lass nach!","Guck an!","Teufel auch!","Wahnsinn!","Oje, ojemine!","Ich werd verrückt!","Da wird doch der Hund in der Pfanne verrückt!","Allmächd!","Oha!","Ich glaub mich laust der Affe!","Ich glaub, mich knutscht ein Elch!","Zum Donnerkeil!","Ich glaub, mein Hamster bohnert!","Meine Güte!","Alter Falter!","Menschenskinder!","Ach du liebes Lieschen!","Ach du liebe Zeit!","Donnerlittchen!","Jesses, Maria und Joseph!","Heiliger Bimbam!","Heidewitzka!","Ich krieg die Motten!","Ich glaub, mich tritt ein Pferd!","Potz Blitz!")
 
 x <- lubridate::interval(begin,end)
 y <- x %/% lubridate::seconds(1)
@@ -37,6 +43,10 @@ df <- data.frame()
 
 empty <- "\U2591"
 full <- "\U2593"
+
+if(type != "a" & type != "b"){
+  stop("Please specify 'type' as either 'a' or 'b'.")
+}
 
 for(i in 1:100){
   
@@ -52,7 +62,13 @@ for(i in 1:100){
   
   int_dt <- c(paste(fulls, empties, sep = ""))
   
-  perc <- paste(i, "% des Semesters sind rum.", sep = "")
+  if(type == "a"){
+    perc <- paste(i, "% des Semesters sind rum.", sep = "")
+  }else if(type == "b"){
+    perc <- paste(i, "% der Vorlesungszeit sind rum.", sep = "")
+  }else{
+    stop("Please specify 'type' as either 'a' or 'b'.")
+  }
   
   msg <- paste(int, "\\n", int_dt, "\\n", perc, sep = "")
   
